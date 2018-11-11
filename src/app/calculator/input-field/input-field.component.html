@@ -1,0 +1,52 @@
+<table style="width:100%">
+    <tr>
+      <td class="math_style" (click)="zero()">AC</td>
+      <td class="math_style" >+/-</td>
+      <td class="math_style" (click)="operator('%')">%</td>
+      <td class="math_style" (click)="operator('÷')"  >÷</td>
+    </tr>
+    <tr>
+      <td class="number"
+      (click)="InputNum('7')"
+      >7</td>
+      <td class="number"
+      (click)="InputNum('8')"
+      >8</td>
+      <td class="number"
+      (click)="InputNum('9')"
+      >9</td>
+      <td class="math_style" (click)="operator('x')" >x</td>
+    </tr>
+    <tr>
+      <td class="number"
+      (click)="InputNum('4')"
+      >4</td>
+      <td class="number"
+      (click)="InputNum('5')"
+      > 5</td>
+      <td class="number"
+      (click)="InputNum('6')"
+      >6</td>
+      <td class="math_style" (click)="operator('-')">-</td>
+    </tr>
+    <tr>
+        <td class="number"
+        (click)="InputNum('1')"
+        >1</td>
+        <td class="number"
+        (click)="InputNum('2')"
+        >2</td>
+        <td class="number"
+        (click)="InputNum('3')"
+        >3</td>
+        <td class="math_style" (click)="operator('+')">+</td>
+      </tr>
+      <tr>
+          <td class="number"
+          (click)="InputNum('0')"
+          >0</td>
+          <td></td>
+          <td class="number">.</td>
+          <td class="math_style" (click)="equal()">=</td>
+        </tr>
+  </table>

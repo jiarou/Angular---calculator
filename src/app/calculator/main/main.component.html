@@ -1,0 +1,8 @@
+
+<h2 style="text-align: center">Calculator </h2>
+<div style="width:60%;border:1px solid;margin:auto">
+
+<app-show [showing]="showing"></app-show>
+<app-input-field [showing]="showing" (changeShowing)="ChangeShowing($event)"></app-input-field>
+<!-- (changeShowing)="ChangeShowing($event)" 訂閱子元件的變動 -->
+</div>
