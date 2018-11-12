@@ -15,27 +15,60 @@ export class InputFieldComponent implements OnInit {
   total = 0;
   num2;
   mathFnc = '';
+  count = 0;
 
 
   constructor(public resultsvc: ResultService ) { }
   InputNum(num) {
     if ( this.showing === '0') {
+      console.log('1');
       this.showing = num;
-    } else if ( this.mathFnc !== '') {
-      this.showing = num;
-    } else if (this.mathFnc === '') {
+    } else if ( this.mathFnc !== '' && this.showing.indexOf('.') !== -1 && this.total === 0) {
+      console.log('2');
+      this.showing = this.showing + num;
+    } else if ( this.mathFnc !== '' && this.showing.indexOf('.') !== -1 && this.count === 0) {
+      this.showing += num;
+      console.log('8', this.count);
+    } else if (this.mathFnc === '' ) {
+      console.log('3');
       this.showing += num;
       this.total = Number(this.showing);
+    } else if (this.total !== 0 && this.count >= 1) {
+      console.log("5",this.total, this.count);
+       this.showing = '';
+       this.showing += num;
     } else {
+      console.log('4');
+      console.log(this.total, this.count);
       this.showing += num;
 
     }
     this.changeShowing.emit(this.showing);
+    this.count = 0;
     // 告訴父元件我改變了什麼值
   }
 
+  dot() {
+    if ( this.showing.indexOf('.') === -1) {
+      this.showing = this.showing + '.';
+      this.changeShowing.emit(this.showing);
+    }
+
+  }
+
+  negative() {
+    if ( this.showing !== '0') {
+       this.showing = String(0 - Number(this.showing));
+       this.changeShowing.emit(this.showing);
+    }
+
+  }
+
+
   operator(math) {
-    if ( this.total === 0 ) {
+    this.count += 1;
+    if (this.count === 1 ) {
+      if ( this.total === 0 ) {
         this.total = Number(this.showing);
         this.mathFnc = math;
         this.showing = '0';
@@ -56,10 +89,15 @@ export class InputFieldComponent implements OnInit {
         this.mathFnc = math;
       }
       this.changeShowing.emit(this.showing);
+
+    } else if (this.count > 0 && this.mathFnc !== math ) {
+      this.mathFnc = math;
+     }
+
     }
 
+
   equal() {
-    console.log('3');
     this.num2 = Number(this.showing);
     switch (this.mathFnc) {
       case('+'): this.total = this.resultsvc.numAdd(this.total, this.num2);

@@ -1,7 +1,7 @@
 <table style="width:100%">
     <tr>
       <td class="math_style" (click)="zero()">AC</td>
-      <td class="math_style" >+/-</td>
+      <td class="math_style" (click)="negative()" >+/-</td>
       <td class="math_style" (click)="operator('%')">%</td>
       <td class="math_style" (click)="operator('÷')"  >÷</td>
     </tr>
@@ -46,7 +46,7 @@
           (click)="InputNum('0')"
           >0</td>
           <td></td>
-          <td class="number">.</td>
+          <td class="number" (click)="dot()">.</td>
           <td class="math_style" (click)="equal()">=</td>
         </tr>
   </table>
