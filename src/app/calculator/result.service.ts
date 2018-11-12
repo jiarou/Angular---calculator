@@ -4,7 +4,6 @@ import { Injectable, } from '@angular/core';
   providedIn: 'root'
 })
 export class ResultService {
-
   numAdd( num1, num2) {
     let r1 , r2, m;
     try {
@@ -70,7 +69,6 @@ numDivide(arg1, arg2) {
 numRemainder(arg1, arg2) {
   return arg1 % arg2 ;
 }
-
 
 
 }

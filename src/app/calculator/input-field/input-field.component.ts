@@ -21,30 +21,24 @@ export class InputFieldComponent implements OnInit {
   constructor(public resultsvc: ResultService ) { }
   InputNum(num) {
     if ( this.showing === '0') {
-      console.log('1');
       this.showing = num;
     } else if ( this.mathFnc !== '' && this.showing.indexOf('.') !== -1 && this.total === 0) {
-      console.log('2');
       this.showing = this.showing + num;
     } else if ( this.mathFnc !== '' && this.showing.indexOf('.') !== -1 && this.count === 0) {
       this.showing += num;
-      console.log('8', this.count);
     } else if (this.mathFnc === '' ) {
-      console.log('3');
       this.showing += num;
       this.total = Number(this.showing);
     } else if (this.total !== 0 && this.count >= 1) {
-      console.log("5",this.total, this.count);
        this.showing = '';
        this.showing += num;
     } else {
-      console.log('4');
-      console.log(this.total, this.count);
       this.showing += num;
 
     }
-    this.changeShowing.emit(this.showing);
     this.count = 0;
+    this.changeShowing.emit(this.showing);
+
     // 告訴父元件我改變了什麼值
   }
 
