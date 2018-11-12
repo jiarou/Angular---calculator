@@ -16,6 +16,11 @@ export class InputFieldComponent implements OnInit {
   num2;
   mathFnc = '';
   count = 0;
+  active3 = false;
+  active2 = false;
+  active1 = false;
+  active = false;
+
 
 
   constructor(public resultsvc: ResultService ) { }
@@ -58,6 +63,31 @@ export class InputFieldComponent implements OnInit {
 
   }
 
+  activefnc($event) {
+   if ( $event.type === 'click') {
+     this.active = true ;
+   }
+  }
+
+  activefnc1($event) {
+    if ( $event.type === 'click') {
+      this.active1 = true ;
+    }
+   }
+
+   activefnc2($event) {
+    if ( $event.type === 'click') {
+      this.active2 = true ;
+    }
+   }
+
+   activefnc3($event) {
+    if ( $event.type === 'click') {
+      this.active3 = true ;
+    }
+   }
+
+
 
   operator(math) {
     this.count += 1;
@@ -65,8 +95,16 @@ export class InputFieldComponent implements OnInit {
       if ( this.total === 0 ) {
         this.total = Number(this.showing);
         this.mathFnc = math;
+        this.active = false;
+        this.active3 = false;
+        this.active2 = false;
+        this.active1 = false;
         this.showing = '0';
     } else {
+      this.active = false;
+      this.active3 = false;
+      this.active2 = false;
+      this.active1 = false;
       this.num2 = Number(this.showing);
       switch (this.mathFnc) {
         case('+'): this.total = this.resultsvc.numAdd(this.total, this.num2);
@@ -86,6 +124,10 @@ export class InputFieldComponent implements OnInit {
 
     } else if (this.count > 0 && this.mathFnc !== math ) {
       this.mathFnc = math;
+      this.active = false;
+      this.active3 = false;
+      this.active2 = false;
+      this.active1 = false;
      }
 
     }
@@ -109,11 +151,19 @@ export class InputFieldComponent implements OnInit {
       this.num2 = 0;
       this.mathFnc = '';
       this.changeShowing.emit(this.showing);
+      this.active = false;
+      this.active3 = false;
+      this.active2 = false;
+      this.active1 = false;
     }
 
   zero() {
     this.showing = '0';
     this.total = 0 ;
+    this.active = false;
+    this.active3 = false;
+    this.active2 = false;
+    this.active1 = false;
     this.changeShowing.emit(this.showing);
   }
   ngOnInit() {

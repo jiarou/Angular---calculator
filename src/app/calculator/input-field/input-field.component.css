@@ -1,16 +1,41 @@
 .number{
-  background-color: black;
-    border-radius: 99em;
-    width: 25px;
-    height: 60px;
-    text-align: center;
-    color: white;
+  background-color:rgba(83, 80, 80, 0.685);
+
 }
 
 .math_style{
   background-color: orange;
+}
+
+.every_row{
+  display: flex;
+}
+
+.btn_style{
   border-radius: 99em;
-  width: 25px;
-  height: 60px;
+  width: 90px;
+  height: 90px;
+  margin: 5px auto;
   text-align: center;
+  color: white;
+  font-size: 3vmax;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 90px;
+  cursor: pointer;
+}
+
+.zero{
+  border-radius: 99em;
+  width: 210px;
+  height: 90px;
+  margin: 5px auto;
+  text-align: center;
+  color: white;
+  font-size: 3vmax;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 90px;
+  cursor: pointer;
+
 }

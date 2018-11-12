@@ -1,52 +1,60 @@
-<table style="width:100%">
-    <tr>
-      <td class="math_style" (click)="zero()">AC</td>
-      <td class="math_style" (click)="negative()" >+/-</td>
-      <td class="math_style" (click)="operator('%')">%</td>
-      <td class="math_style" (click)="operator('÷')"  >÷</td>
-    </tr>
-    <tr>
-      <td class="number"
+<div style="width:100%">
+    <div class="every_row">
+      <div class="math_style btn_style" style="color:black; background:darkgray;" (click)="zero()">AC</div>
+      <div class="math_style btn_style" style="color:black; background:darkgray;" (click)="negative()" >+/-</div>
+      <div class="math_style btn_style" style="color:black; background:darkgray;" (click)="operator('%')">%</div>
+      <div class="math_style btn_style" (click)="operator('÷')"  (click)='activefnc3($event)'
+      [ngStyle]="{'background': active3? 'white':'orange',color: active3? 'orange':'white'}"
+      >÷</div>
+    </div>
+    <div class="every_row">
+      <div class="number btn_style"
       (click)="InputNum('7')"
-      >7</td>
-      <td class="number"
+      >7</div>
+      <div class="number btn_style"
       (click)="InputNum('8')"
-      >8</td>
-      <td class="number"
+      >8</div>
+      <div class="number btn_style"
       (click)="InputNum('9')"
-      >9</td>
-      <td class="math_style" (click)="operator('x')" >x</td>
-    </tr>
-    <tr>
-      <td class="number"
+      >9</div>
+      <div class="math_style btn_style" (click)="operator('x')" (click)='activefnc2($event)'
+      [ngStyle]="{'background': active2? 'white':'orange',color: active2? 'orange':'white'}"
+      >x</div>
+    </div>
+    <div class="every_row">
+      <div class="number btn_style"
       (click)="InputNum('4')"
-      >4</td>
-      <td class="number"
+      >4</div>
+      <div class="number btn_style"
       (click)="InputNum('5')"
-      > 5</td>
-      <td class="number"
+      > 5</div>
+      <div class="number btn_style"
       (click)="InputNum('6')"
-      >6</td>
-      <td class="math_style" (click)="operator('-')">-</td>
-    </tr>
-    <tr>
-        <td class="number"
+      >6</div>
+      <div class="math_style btn_style" (click)="operator('-')" (click)='activefnc1($event)'
+      [ngStyle]="{'background': active1? 'white':'orange',color: active1? 'orange':'white'}"
+      >-</div>
+    </div>
+    <div class="every_row">
+        <div class="number btn_style"
         (click)="InputNum('1')"
-        >1</td>
-        <td class="number"
+        >1</div>
+        <div class="number btn_style"
         (click)="InputNum('2')"
-        >2</td>
-        <td class="number"
+        >2</div>
+        <div class="number btn_style"
         (click)="InputNum('3')"
-        >3</td>
-        <td class="math_style" (click)="operator('+')">+</td>
-      </tr>
-      <tr>
-          <td class="number"
+        >3</div>
+        <div class="math_style btn_style" (click)="operator('+')" (click)='activefnc($event)'
+        [ngStyle]="{'background': active? 'white':'orange',color: active? 'orange':'white'}"
+        >+</div>
+      </div>
+      <div class="every_row">
+          <div class="number zero"
           (click)="InputNum('0')"
-          >0</td>
-          <td></td>
-          <td class="number" (click)="dot()">.</td>
-          <td class="math_style" (click)="equal()">=</td>
-        </tr>
-  </table>
+          >0</div>
+          <div></div>
+          <div class="number btn_style" (click)="dot()">.</div>
+          <div class="math_style btn_style" (click)="equal()">=</div>
+        </div>
+      </div>
