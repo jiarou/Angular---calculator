@@ -3,8 +3,8 @@
       <div class="math_style btn_style" style="color:black; background:darkgray;" (click)="zero()">AC</div>
       <div class="math_style btn_style" style="color:black; background:darkgray;" (click)="negative()" >+/-</div>
       <div class="math_style btn_style" style="color:black; background:darkgray;" (click)="operator('%')">%</div>
-      <div class="math_style btn_style" (click)="operator('÷')"  (click)='activefnc3($event)'
-      [ngStyle]="{'background': active3? 'white':'orange',color: active3? 'orange':'white'}"
+      <div class="math_style btn_style" (click)="operator('÷')"  (click)='activefnc("÷")'
+      [ngStyle]="{'background': active === '÷' ? 'white':'orange',color: active === '÷' ? 'orange':'white'}"
       >÷</div>
     </div>
     <div class="every_row">
@@ -17,8 +17,8 @@
       <div class="number btn_style"
       (click)="InputNum('9')"
       >9</div>
-      <div class="math_style btn_style" (click)="operator('x')" (click)='activefnc2($event)'
-      [ngStyle]="{'background': active2? 'white':'orange',color: active2? 'orange':'white'}"
+      <div class="math_style btn_style" (click)="operator('x')" (click)='activefnc("x")'
+      [ngStyle]="{'background': active === 'x' ? 'white':'orange',color: active === 'x' ? 'orange':'white'}"
       >x</div>
     </div>
     <div class="every_row">
@@ -31,8 +31,8 @@
       <div class="number btn_style"
       (click)="InputNum('6')"
       >6</div>
-      <div class="math_style btn_style" (click)="operator('-')" (click)='activefnc1($event)'
-      [ngStyle]="{'background': active1? 'white':'orange',color: active1? 'orange':'white'}"
+      <div class="math_style btn_style" (click)="operator('-')" (click)='activefnc("-")'
+      [ngStyle]="{'background': active === '-'? 'white':'orange',color: active === '-'? 'orange':'white'}"
       >-</div>
     </div>
     <div class="every_row">
@@ -45,8 +45,8 @@
         <div class="number btn_style"
         (click)="InputNum('3')"
         >3</div>
-        <div class="math_style btn_style" (click)="operator('+')" (click)='activefnc($event)'
-        [ngStyle]="{'background': active? 'white':'orange',color: active? 'orange':'white'}"
+        <div class="math_style btn_style" (click)="operator('+')" (click)='activefnc("+")'
+        [ngStyle]="{'background': active === '+' ? 'white':'orange',color: active === '+' ? 'orange':'white'}"
         >+</div>
       </div>
       <div class="every_row">
