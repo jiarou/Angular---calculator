@@ -3,7 +3,124 @@ import { Injectable, } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class ResultService {
+
+  total = 0;
+  num2;
+  mathFnc = '';
+  count = 0;
+  active = '';
+
+
+  zero(showing) {
+    showing = '0';
+    this.total = 0 ;
+    this.active = '';
+   return showing;
+  }
+
+ equal(showing) {
+  this.num2 = Number(showing);
+  switch (this.mathFnc) {
+    case('+'): this.total = this.numAdd(this.total, this.num2);
+      break ;
+    case('-'): this.total = Number(this.numSubtract(this.total, this.num2 ));
+      break;
+    case('x'): this.total = this.numMultiply(this.total, this.num2 );
+      break;
+    case('÷'): this.total = Number(this.numDivide(this.total, this.num2 ));
+      break;
+      case('%'): this.total = Number(this.numRemainder(this.total, this.num2 ));
+      break;
+    }
+    showing = String(this.total);
+    this.num2 = 0;
+    this.mathFnc = '';
+    this.active = '';
+    console.log(showing);
+    return showing ;
+ }
+
+
+operator(math , showing) {
+  this.count += 1;
+  if (this.count === 1 ) {
+    if ( this.total === 0 ) {
+      this.total = Number(showing);
+      this.mathFnc = math;
+      this.active = '';
+      showing = '0';
+  } else {
+    this.active = '';
+    this.num2 = Number(showing);
+    switch (this.mathFnc) {
+      case('+'): this.total = this.numAdd(this.total, this.num2);
+        break ;
+      case('-'): this.total = Number(this.numSubtract (this.total, this.num2 ));
+        break;
+      case('x'): this.total = this.numMultiply (this.total, this.num2 );
+        break;
+      case('%'): this.total = Number(this.numRemainder(this.total, this.num2 ));
+        break;
+      }
+      showing = String(this.total);
+      this.num2 = 0;
+      this.mathFnc = math;
+    }
+
+  } else if (this.count > 0 && this.mathFnc !== math ) {
+    this.mathFnc = math;
+    this.active = '';
+   }
+   return showing;
+}
+
+InputNum(num, showing) {
+  if ( showing === '0') {
+    showing = num;
+  } else if ( this.mathFnc !== '' && showing.indexOf('.') !== -1 && this.total === 0) {
+    showing = showing + num;
+  } else if ( this.mathFnc !== '' && showing.indexOf('.') !== -1 && this.count === 0) {
+    showing += num;
+  } else if (this.mathFnc === '' ) {
+    showing += num;
+    this.total = Number(showing);
+  } else if (this.total !== 0 && this.count >= 1) {
+     showing = '';
+     showing += num;
+  } else {
+    showing += num;
+
+  }
+  this.count = 0;
+  return showing;
+
+}
+
+
+activefnc(math) {
+  this.active = math ;
+}
+
+dot(showing) {
+  if ( showing.indexOf('.') === -1) {
+    showing = showing + '.';
+  }
+  return showing;
+}
+
+
+negative(showing) {
+  if ( showing !== '0') {
+     showing = String(0 - Number(showing));
+  }
+  return showing;
+}
+
+
   numAdd( num1, num2) {
     let r1 , r2, m;
     try {
@@ -19,6 +136,9 @@ export class ResultService {
     m = Math.pow(10, Math.max(r1, r2));
     return (num1 * m + num2 * m) / m;
 }
+
+
+
 
 numSubtract(arg1, arg2) {
   let r1, r2, m, n;

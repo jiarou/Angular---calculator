@@ -12,125 +12,46 @@ export class InputFieldComponent implements OnInit {
   @Output()
   changeShowing = new EventEmitter<any>();
   // 發射showing改變的通知
-  total = 0;
-  num2;
-  mathFnc = '';
-  count = 0;
-  active = '';
+
 
 
 
   constructor(public resultsvc: ResultService ) { }
   InputNum(num) {
-    if ( this.showing === '0') {
-      this.showing = num;
-    } else if ( this.mathFnc !== '' && this.showing.indexOf('.') !== -1 && this.total === 0) {
-      this.showing = this.showing + num;
-    } else if ( this.mathFnc !== '' && this.showing.indexOf('.') !== -1 && this.count === 0) {
-      this.showing += num;
-    } else if (this.mathFnc === '' ) {
-      this.showing += num;
-      this.total = Number(this.showing);
-    } else if (this.total !== 0 && this.count >= 1) {
-       this.showing = '';
-       this.showing += num;
-    } else {
-      this.showing += num;
-
-    }
-    this.count = 0;
+    this.showing = this.resultsvc.InputNum(num, this.showing);
     this.changeShowing.emit(this.showing);
-
     // 告訴父元件我改變了什麼值
   }
 
   dot() {
-    if ( this.showing.indexOf('.') === -1) {
-      this.showing = this.showing + '.';
+      this.showing = this.resultsvc.dot(this.showing);
       this.changeShowing.emit(this.showing);
-    }
-
   }
 
   negative() {
-    if ( this.showing !== '0') {
-       this.showing = String(0 - Number(this.showing));
+       this.showing = this.resultsvc.negative(this.showing);
        this.changeShowing.emit(this.showing);
-    }
-
   }
-
-  activefnc(math) {
-     this.active = math ;
-
-  }
-
 
   operator(math) {
-    this.count += 1;
-    if (this.count === 1 ) {
-      if ( this.total === 0 ) {
-        this.total = Number(this.showing);
-        this.mathFnc = math;
-        this.active = '';
-        this.showing = '0';
-    } else {
-      this.active = '';
-      this.num2 = Number(this.showing);
-      switch (this.mathFnc) {
-        case('+'): this.total = this.resultsvc.numAdd(this.total, this.num2);
-          break ;
-        case('-'): this.total = Number(this.resultsvc.numSubtract (this.total, this.num2 ));
-          break;
-        case('x'): this.total = this.resultsvc.numMultiply (this.total, this.num2 );
-          break;
-        case('%'): this.total = Number(this.resultsvc.numRemainder(this.total, this.num2 ));
-          break;
-        }
-        this.showing = String(this.total);
-        this.num2 = 0;
-        this.mathFnc = math;
-      }
-      this.changeShowing.emit(this.showing);
-
-    } else if (this.count > 0 && this.mathFnc !== math ) {
-      this.mathFnc = math;
-      this.active = '';
-     }
-
+     this.showing = this.resultsvc.operator(math, this.showing);
+     this.changeShowing.emit(this.showing);
     }
-
-
   equal() {
-    this.num2 = Number(this.showing);
-    switch (this.mathFnc) {
-      case('+'): this.total = this.resultsvc.numAdd(this.total, this.num2);
-        break ;
-      case('-'): this.total = Number(this.resultsvc.numSubtract(this.total, this.num2 ));
-        break;
-      case('x'): this.total = this.resultsvc.numMultiply(this.total, this.num2 );
-        break;
-      case('÷'): this.total = Number(this.resultsvc.numDivide(this.total, this.num2 ));
-        break;
-        case('%'): this.total = Number(this.resultsvc.numRemainder(this.total, this.num2 ));
-        break;
-      }
-      this.showing = String(this.total);
-      this.num2 = 0;
-      this.mathFnc = '';
+      this.showing = this.resultsvc.equal(this.showing);
       this.changeShowing.emit(this.showing);
-      this.active = '';
     }
 
   zero() {
-    this.showing = '0';
-    this.total = 0 ;
-    this.active = '';
+    this.showing = this.resultsvc.zero(this.showing);
     this.changeShowing.emit(this.showing);
   }
   ngOnInit() {
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnChanges() {
+  }
 
 
 }
